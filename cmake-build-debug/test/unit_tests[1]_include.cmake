@@ -1,5 +1,0 @@
-if(EXISTS "/home/xavierb/CLionProjects/SP24-SE-CSCI-C455-Xavbeat03-Homework-Assignment-6/cmake-build-debug/test/unit_tests[1]_tests.cmake")
-  include("/home/xavierb/CLionProjects/SP24-SE-CSCI-C455-Xavbeat03-Homework-Assignment-6/cmake-build-debug/test/unit_tests[1]_tests.cmake")
-else()
-  add_test(unit_tests_NOT_BUILT unit_tests_NOT_BUILT)
-endif()
