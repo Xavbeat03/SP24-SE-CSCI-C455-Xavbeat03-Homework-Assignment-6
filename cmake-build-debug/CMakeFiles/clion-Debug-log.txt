@@ -1,0 +1,33 @@
+/usr/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/opt/clion/bin/ninja/linux/x64/ninja -G Ninja -S /home/xavierb/CLionProjects/SP24-SE-CSCI-C455-Xavbeat03-Homework-Assignment-6 -B /home/xavierb/CLionProjects/SP24-SE-CSCI-C455-Xavbeat03-Homework-Assignment-6/cmake-build-debug
+CMake Deprecation Warning at cmake-build-debug/_deps/googletest-src/CMakeLists.txt:4 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at cmake-build-debug/_deps/googletest-src/googlemock/CMakeLists.txt:45 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+CMake Deprecation Warning at cmake-build-debug/_deps/googletest-src/googletest/CMakeLists.txt:56 (cmake_minimum_required):
+  Compatibility with CMake < 3.5 will be removed from a future version of
+  CMake.
+
+  Update the VERSION argument <min> value or use a ...<max> suffix to tell
+  CMake that the project does not need compatibility with older versions.
+
+
+-- Could NOT find Doxygen (missing: DOXYGEN_EXECUTABLE) 
+Doxygen need to be installed to generate the doxygen documentation
+-- Configuring done (0.1s)
+CMake Error at test/CMakeLists.txt:3 (add_executable):
+  No SOURCES given to target: unit_tests
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.
