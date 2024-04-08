@@ -5,6 +5,15 @@
 class Maze()
 {
 public:
+    PriorityQueue A_Star(Node* start, Node* goal){
+
+    }
+private:
+
+}
+
+class Node(){
+public:
 
 private:
 
