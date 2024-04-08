@@ -2,19 +2,19 @@
 // Created by xavierb on 4/4/24.
 //
 
-class Maze()
+#include "PriorityQueue/PriorityQueue.h"
+#include "Node.cpp"
+
+class Maze
 {
 public:
-    PriorityQueue A_Star(Node* start, Node* goal){
+    PriorityQueue<Node> A_Star(Node* start, Node* goal){
+        PriorityQueue openList = new PriorityQueue<Node>;
+
+
 
     }
 private:
 
-}
+};
 
-class Node(){
-public:
-
-private:
-
-}
