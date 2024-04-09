@@ -1,3 +1,8 @@
-//
-// Created by xavierb on 4/9/24.
-//
+#include <gtest/gtest.h>
+
+#include "../../src/Node.cpp"
+
+namespace {
+
+
+}
