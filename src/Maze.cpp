@@ -90,6 +90,17 @@ public:
     path.prepend(start)
     return path
      */
+
+
+    /**
+     * Returns the heuristic estimation between neighbor and goal
+     * @param start the start node for the heuristic
+     * @param goal the final node for the heuristic
+     * @return integer representing the heuristic distance between start and goal, in this case 0 is used
+     */
+    int heuristic(Node* start, Node* goal){
+        return 0;
+    }
 private:
 
 };
