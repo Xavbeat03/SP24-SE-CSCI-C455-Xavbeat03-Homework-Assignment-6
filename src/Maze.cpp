@@ -112,6 +112,17 @@ public:
     int heuristic(Node* start, Node* goal){
         return 0;
     }
+
+
+    /**
+     * Takes a filepath and reads the file. Attempting to convert it to a Maze
+     * If it fails, returns a nullptr
+     * @param filePath the path to the file
+     * @return A maze pointer of null pointer
+     */
+    static Maze* ingestMazeFromFile(std::string filePath){
+        return nullptr;
+    }
 private:
 
 };
