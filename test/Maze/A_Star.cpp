@@ -1,10 +1,15 @@
-//
-// Created by xavierb on 4/8/24.
-//
+#include <gtest/gtest.h>
 
-class A_Star{
-public:
+#include "../../src/Maze.cpp"
 
-private:
+namespace {
 
-};
+    TEST(AStar, TEST1){
+        std::string testFile = "../../mazes/maze.txt";
+
+        Maze::ingestNodesFromFile(testFile);
+
+
+    }
+
+}

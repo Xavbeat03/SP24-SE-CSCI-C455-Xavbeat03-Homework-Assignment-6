@@ -1,5 +1,7 @@
 #include <exception>
 #include <vector>
+#include <string>
+#include <iostream>
 
 class Node{
 private:
@@ -81,6 +83,20 @@ public:
     }
 
     /**
+     * Adds an adjacent node by the value
+     * @param value the new adjacencies value
+     */
+    void addAdjacentByValue(int value){
+        if (getNode(value) == nullptr) {
+            addAdjacentNode(new Node(value));
+        } else {
+            addAdjacentNode(getNode(value));
+        }
+    }
+
+
+
+    /**
      * returns a list of all the adjacent nodes
      * @return a pointer to an array of Nodes
      */
@@ -117,5 +133,18 @@ public:
      */
     static void clearNodes(){
         nodes = new std::vector<Node*> {};
+    }
+
+    static std::string NodesToString(){
+        std::string val;
+        val += "{";
+        for(int i = 0; i < nodes->size(); i++){
+            val += std::to_string(nodes->at(i)->getValue());
+            if(i != nodes->size()-1){
+                val += " ";
+            }
+        }
+        val += "}";
+        return val;
     }
 };

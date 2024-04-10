@@ -3,7 +3,7 @@
 //
 
 #include <queue>
-#include <string>
+#include <fstream>
 #include "Node.cpp"
 
 class Maze
@@ -158,10 +158,10 @@ public:
      */
 
     /**
-     *
-     * @param start
-     * @param goal
-     * @return
+     * Reconstructs the path between the start node and goal node
+     * @param start the starting node
+     * @param goal the ending node
+     * @return a vector of the path from start node to goal node
      */
     std::vector<Node*>* reconstruct_path(Node* start, Node* goal){
         auto* revPath = new std::vector<Node*> {};
@@ -181,10 +181,6 @@ public:
         }
 
         return path;
-
-
-
-        return new std::vector<Node*>;
     }
 
     /**
@@ -202,12 +198,78 @@ public:
      * Takes a filepath and reads the file. Attempting to convert it to a Maze
      * If it fails, returns a nullptr
      * @param filePath the path to the file
-     * @return A maze pointer of null pointer
      */
-    static Maze* ingestMazeFromFile(std::string filePath){
-        return nullptr;
+    static void ingestNodesFromFile(std::string filePath){
+        std::string line;
+        std::ifstream file;
+        file.open(filePath);
+        if (file.is_open())
+        {
+            while (getline (file, line) )
+            {
+                std::vector<std::string> splitLine = splitString(line, ' ');
+                if(splitLine.size() == 0) continue;
+
+                if(Node::getNode(std::stoi(splitLine.at(0))) == nullptr){
+                    new Node(std::stoi(splitLine.at(0)));
+                }
+
+                for(int i = 1; i < splitLine.size() && std::stoi(splitLine.at(i)) != -1; i++){
+                    Node::getNode(std::stoi(splitLine.at(0)))->addAdjacentByValue(std::stoi(splitLine.at(i)));
+                }
+            }
+        }
+
+
     }
+
 private:
+
+    /**
+     * Split string str at delimiter dl returning a vector of the pieces
+     * @param str string split
+     * @param dl delimiter
+     * @return vector containing pieces
+     */
+    static std::vector<std::string> splitString(std::string str, char dl)
+    {
+        std::string word;
+
+        // to count the number of split strings
+        int num = 0;
+
+        // adding delimiter character at the end
+        // of 'str'
+        str = str + dl;
+
+        // length of 'str'
+        int l = str.size();
+
+        // traversing 'str' from left to right
+        std::vector<std::string> substr_list;
+        for (int i = 0; i < l; i++) {
+
+            // if str[i] is not equal to the delimiter
+            // character then accumulate it to 'word'
+            if (str[i] != dl)
+                word = word + str[i];
+
+            else {
+
+                // if 'word' is not an empty string,
+                // then add this 'word' to the vector
+                // 'substr_list[]'
+                if ((int)word.size() != 0)
+                    substr_list.push_back(word);
+
+                // reset 'word'
+                word = "";
+            }
+        }
+
+        // return the splitted strings
+        return substr_list;
+    }
 
 };
 
