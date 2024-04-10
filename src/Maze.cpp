@@ -3,12 +3,12 @@
 //
 
 #include <queue>
+#include <string>
 #include "Node.cpp"
 
 class Maze
 {
 public:
-    //TODO Set Heuristic to 0
 
     /**
     function A_star(start, goal):
@@ -67,10 +67,10 @@ public:
      */
 
     /**
-     *
-     * @param start
-     * @param goal
-     * @return
+     * Finds the best path between two nodes when it exists
+     * @param start the starting node
+     * @param goal the goal node to end on
+     * @return a vector representing the path between start and goal or a nullptr if there is no path
      */
     std::vector<Node*>* A_Star(Node* start, Node* goal){
 
@@ -79,19 +79,17 @@ public:
         auto* closedList = new std::vector<Node*>;
 
         // Add the start node to the open list
-        openList->Insert(start);
+        openList->push(start);
 
         // Initialize costs for start node
-        int startCost = 0;
-        int startHeuristicCost = heuristic(start, goal);
-        int startFunctionCost = startCost + startHeuristicCost;
+        start->setGCost(0);
+        start->setHCost(heuristic(start,goal));
+        start->setFCost(start->getGCost()+start->getHCost());
 
         while(!openList->empty()){
             // Get the node with the lowest f_cost from the open list
             Node* current_node = openList->top();
             openList->pop();
-
-            int curCost = 0;
 
             // Check if the current node is the goal
             if (current_node == goal){
@@ -99,7 +97,7 @@ public:
             }
 
             // Move current node from open list to closed list
-            closedList->emplace_back(current_node);
+            closedList->push_back(current_node);
 
             // Expand current node's neighbors
             for(Node* neighbor: *current_node->getAdjacentNodes()) {
@@ -115,21 +113,36 @@ public:
                 if(neighborIsNode) continue;
 
                 // Calculate tentative g_cost for the neighbor
-                int tentative_g_cost = curCost + 1;
+                int tentative_g_cost = current_node->getGCost() + 1; // 1 is the distance between any node and its neighbor in an unweighted graph
 
                 // If neighbor is not in the open list, add it
-                for(Node *node: openList.)
+                auto* tempqueue = openList;
+                while(!tempqueue->empty()){
+                    if(tempqueue->top() != neighbor){
+                        tempqueue->pop();
+                    }
+                }
+                if(tempqueue->empty()){
+                    openList->push(neighbor);
+                }
 
+                // If this path is worse than the one already present, skip it
+                if (tentative_g_cost >= neighbor->getGCost()){
+                    continue;
+                }
 
-
+                // This path is the best until now. Record it!
+                neighbor->setParent(current_node);
+                neighbor->setGCost(tentative_g_cost);
+                neighbor->setHCost(heuristic(neighbor, goal));
+                neighbor->setFCost(neighbor->getGCost() + neighbor->getHCost());
 
             }
         }
 
-
-
-
-
+        if(openList->empty()){
+            return nullptr;
+        }
     }
 
     /**
@@ -151,6 +164,24 @@ public:
      * @return
      */
     std::vector<Node*>* reconstruct_path(Node* start, Node* goal){
+        auto* revPath = new std::vector<Node*> {};
+        Node* currentNode = goal;
+        while(currentNode!=start){
+            revPath->emplace_back(currentNode);
+            currentNode = currentNode->getParent();
+        }
+        revPath->emplace_back(start);
+
+        // Reverse the reversed path
+
+        auto* path = new std::vector<Node*> {};
+
+        for(int i = revPath->size()-1; i > 0; i--){
+            path->emplace_back(revPath->at(i));
+        }
+
+        return path;
+
 
 
         return new std::vector<Node*>;

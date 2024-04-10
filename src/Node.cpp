@@ -8,6 +8,45 @@ private:
     std::vector<Node*>* adjacentNodes = new std::vector<Node*> {};
     int value;
 
+    Node* parent;
+public:
+    Node *getParent() const {
+        return parent;
+    }
+
+    void setParent(Node* parent) {
+        Node::parent = parent;
+    }
+
+    int getGCost() const {
+        return g_cost;
+    }
+
+    void setGCost(int gCost) {
+        g_cost = gCost;
+    }
+
+    int getHCost() const {
+        return h_cost;
+    }
+
+    void setHCost(int hCost) {
+        h_cost = hCost;
+    }
+
+    int getFCost() const {
+        return f_cost;
+    }
+
+    void setFCost(int fCost) {
+        f_cost = fCost;
+    }
+
+private:
+    int g_cost;
+    int h_cost;
+    int f_cost;
+
     void addNodeToNodes (Node* node){
         nodes->emplace_back(node);
     }
