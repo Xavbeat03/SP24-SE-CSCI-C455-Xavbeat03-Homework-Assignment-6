@@ -1,16 +1,21 @@
+#include <exception>
+#include <vector>
+
 //
 // Created by xavierb on 4/8/24.
 //
 class Node{
 private:
-    static Node* nodes;
-    static int numNodes;
+    static inline auto* nodes = new std::vector<Node*> {};
+    static inline bool s_first = true;
 
-    Node* adjacentNodes;
+    std::vector<Node*>* adjacentNodes = new std::vector<Node*> {};
     int adjacentSize = 0;
-
     int value;
 
+    void addNodeToNodes (Node* node){
+        nodes->emplace_back(node);
+    }
 public:
 
 
@@ -20,7 +25,8 @@ public:
      */
     Node(int value){
         this->value = value;
-        nodes[numNodes++] = *this;
+
+        addNodeToNodes(this);
     }
 
     ~Node()=default;
@@ -29,8 +35,8 @@ public:
      * Adds an adjacent node to this node
      * @param node the node being added as an adjacent one
      */
-    void addAdjacentNode(Node node){
-        adjacentNodes[adjacentSize] = node;
+    void addAdjacentNode(Node* node){
+        adjacentNodes->emplace_back(node);
     }
 
     /**
@@ -38,8 +44,8 @@ public:
      * @return a pointer to an array of Nodes
      */
 
-    Node* getAdjacentNodes(){
-        return nodes;
+    std::vector<Node*>* getAdjacentNodes(){
+        return adjacentNodes;
     }
 
     /**
@@ -56,9 +62,9 @@ public:
      * @return a pointer to a node
      */
     static Node* getNode(int value){
-        for(int i = 0; i < numNodes; i++){
-            if (nodes[i].getValue() == value){
-                return &nodes[i];
+        for(int i = 0; i < nodes->size(); i++){
+            if (nodes->at(i)->getValue() == value){
+                return nodes->at(i);
             }
         }
         return nullptr;
