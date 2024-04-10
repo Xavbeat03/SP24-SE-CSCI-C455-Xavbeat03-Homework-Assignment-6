@@ -91,6 +91,17 @@ public:
     return path
      */
 
+    /**
+     *
+     * @param start
+     * @param goal
+     * @return
+     */
+    std::vector<Node>* reconstruct_path(Node* start, Node* goal){
+
+
+        return new std::vector<Node>;
+    }
 
     /**
      * Returns the heuristic estimation between neighbor and goal
