@@ -8,6 +8,8 @@ namespace {
 
     TEST(AddAdjacentNode, OneNode){
 
+        Node::clearNodes();
+
         Node n = Node(3);
         Node* No = &n;
 
@@ -24,6 +26,8 @@ namespace {
     }
 
     TEST(AddAdjacentNode, TwoNode){
+
+        Node::clearNodes();
 
         Node n = Node(3);
         Node* No = &n;
@@ -46,6 +50,8 @@ namespace {
     }
 
     TEST(AddAdjacentNode, ThreeNode){
+
+        Node::clearNodes();
 
         Node n = Node(3);
         Node* No = &n;
@@ -73,6 +79,9 @@ namespace {
     }
 
     TEST(AddAdjacentNode, SameNode){
+
+        Node::clearNodes();
+
         Node n = Node(3);
         Node* No = &n;
 

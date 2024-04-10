@@ -5,12 +5,18 @@
 namespace {
 
     TEST(GetValue, SingleDigitTest1){
+
+        Node::clearNodes();
+
         auto* p = new Node(5);
 
         ASSERT_EQ(p->getValue(), 5);
     }
 
     TEST(GetValue, DoubleDigitTest1){
+
+        Node::clearNodes();
+
         auto* p = new Node(10);
         auto* p2 = new Node(15);
 
@@ -19,6 +25,9 @@ namespace {
     }
 
     TEST(GetValue, TripleDigitTest1){
+
+        Node::clearNodes();
+
         auto* p = new Node(100);
         auto* p2 = new Node(150);
         auto* p3 = new Node(250);

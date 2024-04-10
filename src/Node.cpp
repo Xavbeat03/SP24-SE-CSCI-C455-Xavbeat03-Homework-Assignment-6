@@ -1,16 +1,11 @@
 #include <exception>
 #include <vector>
 
-//
-// Created by xavierb on 4/8/24.
-//
 class Node{
 private:
     static inline auto* nodes = new std::vector<Node*> {};
-    static inline bool s_first = true;
 
     std::vector<Node*>* adjacentNodes = new std::vector<Node*> {};
-    int adjacentSize = 0;
     int value;
 
     void addNodeToNodes (Node* node){
@@ -75,5 +70,9 @@ public:
             }
         }
         return nullptr;
+    }
+
+    static void clearNodes(){
+        nodes = new std::vector<Node*> {};
     }
 };
