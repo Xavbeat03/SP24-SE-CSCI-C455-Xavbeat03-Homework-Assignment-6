@@ -36,6 +36,7 @@ public:
      * @param node the node being added as an adjacent one
      */
     void addAdjacentNode(Node* node){
+        //TODO check if node is already in adjacentNodes
         adjacentNodes->emplace_back(node);
     }
 
