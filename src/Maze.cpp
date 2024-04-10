@@ -72,7 +72,7 @@ public:
      * @param goal the goal node to end on
      * @return a vector representing the path between start and goal or a nullptr if there is no path
      */
-    std::vector<Node*>* A_Star(Node* start, Node* goal){
+    static std::vector<Node*>* A_Star(Node* start, Node* goal){
 
         // Initialize open and closed lists
         auto* openList = new std::priority_queue<Node*>;
@@ -163,7 +163,7 @@ public:
      * @param goal the ending node
      * @return a vector of the path from start node to goal node
      */
-    std::vector<Node*>* reconstruct_path(Node* start, Node* goal){
+    static std::vector<Node*>* reconstruct_path(Node* start, Node* goal){
         auto* revPath = new std::vector<Node*> {};
         Node* currentNode = goal;
         while(currentNode!=start){
@@ -189,7 +189,7 @@ public:
      * @param goal the final node for the heuristic
      * @return integer representing the heuristic distance between start and goal, in this case 0 is used
      */
-    int heuristic(Node* start, Node* goal){
+    static int heuristic(Node* start, Node* goal){
         return 0;
     }
 

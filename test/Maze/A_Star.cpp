@@ -5,10 +5,19 @@
 namespace {
 
     TEST(AStar, TEST1){
-        std::string testFile = "../../mazes/maze.txt";
+        std::string testFile = "../../mazes/test-maze.txt";
 
         Maze::ingestNodesFromFile(testFile);
 
+        std::vector<Node*>* path = Maze::A_Star(Node::getNode(1), Node::getNode(6));
+
+        ASSERT_EQ(path->size(), 5);
+
+        std::vector<int> correctVal = {1,2,3,5,6};
+
+        for(int i = 0; i < 5; i ++) {
+            ASSERT_EQ(path->at(i), Node::getNode(correctVal.at(i)));
+        }
 
     }
 

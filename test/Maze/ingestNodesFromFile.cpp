@@ -11,28 +11,16 @@ namespace {
 
         ASSERT_EQ(Node::NodesToString(), "{1 2 3 4 5 6}");
 
-        auto* correct = new std::vector<Node*> {Node::getNode(1)->getAdjacentNodes()->at(0)};
+        ASSERT_EQ(Node::getNode(1)->getAdjacentNodes()->at(0)->getValue(), 2);
 
-        ASSERT_EQ(Node::getNode(1)->getAdjacentNodes()->at(0), correct->at(0));
+        ASSERT_EQ(Node::getNode(2)->getAdjacentNodes()->at(0)->getValue(), 3);
 
-        correct = new std::vector<Node*> {Node::getNode(2)->getAdjacentNodes()->at(0)};
-
-        ASSERT_EQ(Node::getNode(2)->getAdjacentNodes()->at(0), correct->at(0));
-
-        correct = Node::getNode(3)->getAdjacentNodes();
-
-        ASSERT_EQ(Node::getNode(3)->getAdjacentNodes()->at(0), correct->at(0));
-        ASSERT_EQ(Node::getNode(3)->getAdjacentNodes()->at(1), correct->at(1));
-
-        correct = Node::getNode(4)->getAdjacentNodes();
+        ASSERT_EQ(Node::getNode(3)->getAdjacentNodes()->at(0)->getValue(), 4);
+        ASSERT_EQ(Node::getNode(3)->getAdjacentNodes()->at(1)->getValue(), 5);
 
         ASSERT_EQ(Node::getNode(4)->getAdjacentNodes()->size(), 0);
 
-        correct = Node::getNode(5)->getAdjacentNodes();
-
-        ASSERT_EQ(Node::getNode(5)->getAdjacentNodes()->at(0), correct->at(0));
-
-        correct = Node::getNode(6)->getAdjacentNodes();
+        ASSERT_EQ(Node::getNode(5)->getAdjacentNodes()->at(0)->getValue(), 6);
 
         ASSERT_EQ(Node::getNode(6)->getAdjacentNodes()->size(), 0);
     }
