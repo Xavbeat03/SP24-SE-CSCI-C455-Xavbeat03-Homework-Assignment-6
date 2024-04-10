@@ -33,10 +33,16 @@ public:
 
     /**
      * Adds an adjacent node to this node
+     * If the node is already in AdjacentNodes it won't be added twice
      * @param node the node being added as an adjacent one
      */
     void addAdjacentNode(Node* node){
-        //TODO check if node is already in adjacentNodes
+        for(auto & adjacentNode : *adjacentNodes){
+            if(adjacentNode==node || adjacentNode->getValue() == node->getValue()){
+                return;
+            }
+        }
+
         adjacentNodes->emplace_back(node);
     }
 
