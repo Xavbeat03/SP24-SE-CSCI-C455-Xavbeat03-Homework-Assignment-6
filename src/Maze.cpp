@@ -2,7 +2,7 @@
 // Created by xavierb on 4/4/24.
 //
 
-#include "PriorityQueue/PriorityQueue.h"
+#include <queue>
 #include "Node.cpp"
 
 class Maze
@@ -72,8 +72,61 @@ public:
      * @param goal
      * @return
      */
-    PriorityQueue<Node> A_Star(Node* start, Node* goal){
-        PriorityQueue openList = new PriorityQueue<Node>;
+    std::vector<Node*>* A_Star(Node* start, Node* goal){
+
+        // Initialize open and closed lists
+        auto* openList = new std::priority_queue<Node*>;
+        auto* closedList = new std::vector<Node*>;
+
+        // Add the start node to the open list
+        openList->Insert(start);
+
+        // Initialize costs for start node
+        int startCost = 0;
+        int startHeuristicCost = heuristic(start, goal);
+        int startFunctionCost = startCost + startHeuristicCost;
+
+        while(!openList->empty()){
+            // Get the node with the lowest f_cost from the open list
+            Node* current_node = openList->top();
+            openList->pop();
+
+            int curCost = 0;
+
+            // Check if the current node is the goal
+            if (current_node == goal){
+                return reconstruct_path(start, goal);
+            }
+
+            // Move current node from open list to closed list
+            closedList->emplace_back(current_node);
+
+            // Expand current node's neighbors
+            for(Node* neighbor: *current_node->getAdjacentNodes()) {
+
+                // Skip neighbor if it's in the closed list
+                bool neighborIsNode = false;
+                for (Node *node: *closedList){
+                    if (neighbor == node) {
+                        neighborIsNode = true;
+                        break;
+                    }
+                }
+                if(neighborIsNode) continue;
+
+                // Calculate tentative g_cost for the neighbor
+                int tentative_g_cost = curCost + 1;
+
+                // If neighbor is not in the open list, add it
+                for(Node *node: openList.)
+
+
+
+
+            }
+        }
+
+
 
 
 
@@ -97,10 +150,10 @@ public:
      * @param goal
      * @return
      */
-    std::vector<Node>* reconstruct_path(Node* start, Node* goal){
+    std::vector<Node*>* reconstruct_path(Node* start, Node* goal){
 
 
-        return new std::vector<Node>;
+        return new std::vector<Node*>;
     }
 
     /**
