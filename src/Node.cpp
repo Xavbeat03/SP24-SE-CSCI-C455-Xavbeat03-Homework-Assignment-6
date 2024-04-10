@@ -72,6 +72,10 @@ public:
         return nullptr;
     }
 
+    /**
+     * Clears the internal node list
+     * mainly intended for testing usage.
+     */
     static void clearNodes(){
         nodes = new std::vector<Node*> {};
     }
