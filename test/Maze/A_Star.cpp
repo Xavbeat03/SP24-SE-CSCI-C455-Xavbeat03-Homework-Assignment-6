@@ -24,7 +24,7 @@ namespace {
 
     TEST(AStar, TEST2){
 
-        std::string testFile = "../../mazes/tes-maze2.txt";
+        std::string testFile = "../../mazes/test-maze2.txt";
 
         Maze::ingestNodesFromFile(testFile);
 
