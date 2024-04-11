@@ -78,6 +78,12 @@ public:
         auto* openList = new std::priority_queue<Node*>;
         auto* closedList = new std::vector<Node*>;
 
+        for (Node* node : *Node::getNodes()){
+            node->setGCost(2147483647);
+            node->setHCost(0);
+            node->setFCost(node->getGCost() + node->getHCost());
+        }
+
         // Add the start node to the open list
         openList->push(start);
 

@@ -127,6 +127,10 @@ public:
         return nullptr;
     }
 
+    static std::vector<Node*>* getNodes(){
+        return nodes;
+    }
+
     /**
      * Clears the internal node list
      * mainly intended for testing usage.
