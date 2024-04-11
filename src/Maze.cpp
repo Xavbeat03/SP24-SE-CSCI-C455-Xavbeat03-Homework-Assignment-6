@@ -182,7 +182,7 @@ public:
 
         auto* path = new std::vector<Node*> {};
 
-        for(int i = revPath->size()-1; i > 0; i--){
+        for(int i = revPath->size()-1; i > -1; i--){
             path->emplace_back(revPath->at(i));
         }
 
