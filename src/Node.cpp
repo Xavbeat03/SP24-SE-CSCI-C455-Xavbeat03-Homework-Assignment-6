@@ -1,5 +1,7 @@
 #include <exception>
 #include <vector>
+#include <string>
+#include <iostream>
 
 class Node{
 private:
@@ -7,6 +9,45 @@ private:
 
     std::vector<Node*>* adjacentNodes = new std::vector<Node*> {};
     int value;
+
+    Node* parent;
+public:
+    Node *getParent() const {
+        return parent;
+    }
+
+    void setParent(Node* parent) {
+        Node::parent = parent;
+    }
+
+    int getGCost() const {
+        return g_cost;
+    }
+
+    void setGCost(int gCost) {
+        g_cost = gCost;
+    }
+
+    int getHCost() const {
+        return h_cost;
+    }
+
+    void setHCost(int hCost) {
+        h_cost = hCost;
+    }
+
+    int getFCost() const {
+        return f_cost;
+    }
+
+    void setFCost(int fCost) {
+        f_cost = fCost;
+    }
+
+private:
+    int g_cost;
+    int h_cost;
+    int f_cost;
 
     void addNodeToNodes (Node* node){
         nodes->emplace_back(node);
@@ -42,12 +83,40 @@ public:
     }
 
     /**
+     * Adds an adjacent node by the value
+     * @param value the new adjacencies value
+     */
+    void addAdjacentByValue(int value){
+        if (getNode(value) == nullptr) {
+            addAdjacentNode(new Node(value));
+        } else {
+            addAdjacentNode(getNode(value));
+        }
+    }
+
+
+
+    /**
      * returns a list of all the adjacent nodes
      * @return a pointer to an array of Nodes
      */
 
     std::vector<Node*>* getAdjacentNodes(){
         return adjacentNodes;
+    }
+
+    /**
+     * Returns a string representing the nodes in the given list
+     * @param nodes the vector of nodes
+     * @return a string with the node values spaced
+     */
+    static std::string printNodes(std::vector<Node*>* nodes){
+        std::string x = "";
+        for(Node* node : *nodes){
+            x += node->getValue();
+            x+= " ";
+        }
+        return x;
     }
 
     /**
@@ -72,11 +141,28 @@ public:
         return nullptr;
     }
 
+    static std::vector<Node*>* getNodes(){
+        return nodes;
+    }
+
     /**
      * Clears the internal node list
      * mainly intended for testing usage.
      */
     static void clearNodes(){
         nodes = new std::vector<Node*> {};
+    }
+
+    static std::string NodesToString(){
+        std::string val;
+        val += "{";
+        for(int i = 0; i < nodes->size(); i++){
+            val += std::to_string(nodes->at(i)->getValue());
+            if(i != nodes->size()-1){
+                val += " ";
+            }
+        }
+        val += "}";
+        return val;
     }
 };

@@ -3,6 +3,7 @@ file(GLOB_RECURSE ALL_TESTS CONFIGURE_DEPENDS "*.cpp" )
 add_executable(
         unit_tests
         ${ALL_TESTS}
+        Maze/ingestNodesFromFile.cpp
 )
 
 target_link_libraries(
