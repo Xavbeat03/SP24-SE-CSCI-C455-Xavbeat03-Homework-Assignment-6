@@ -106,6 +106,20 @@ public:
     }
 
     /**
+     * Returns a string representing the nodes in the given list
+     * @param nodes the vector of nodes
+     * @return a string with the node values spaced
+     */
+    static std::string printNodes(std::vector<Node*>* nodes){
+        std::string x = "";
+        for(Node* node : *nodes){
+            x += node->getValue();
+            x+= " ";
+        }
+        return x;
+    }
+
+    /**
      * Gets the value of the node
      * @return the integer value of the node
      */

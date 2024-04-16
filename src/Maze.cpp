@@ -93,6 +93,7 @@ public:
         start->setFCost(start->getGCost()+start->getHCost());
 
         while(!openList->empty()){
+
             // Get the node with the lowest f_cost from the open list
             Node* current_node = openList->top();
             openList->pop();
@@ -104,6 +105,9 @@ public:
 
             // Move current node from open list to closed list
             closedList->push_back(current_node);
+
+            // TESTING
+            Node::printNodes(current_node->getAdjacentNodes());
 
             // Expand current node's neighbors
             for(Node* neighbor: *current_node->getAdjacentNodes()) {
@@ -122,13 +126,13 @@ public:
                 int tentative_g_cost = current_node->getGCost() + 1; // 1 is the distance between any node and its neighbor in an unweighted graph
 
                 // If neighbor is not in the open list, add it
-                auto* tempqueue = openList;
-                while(!tempqueue->empty()){
-                    if(tempqueue->top() != neighbor){
-                        tempqueue->pop();
+                auto tempqueue = *openList;
+                while(!tempqueue.empty()){
+                    if(tempqueue.top() != neighbor){
+                        tempqueue.pop();
                     }
                 }
-                if(tempqueue->empty()){
+                if(tempqueue.empty()){
                     openList->push(neighbor);
                 }
 

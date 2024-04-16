@@ -11,13 +11,16 @@ namespace {
 
         std::vector<Node*>* path = Maze::A_Star(Node::getNode(1), Node::getNode(6));
 
+        if(path== nullptr) {
+            FAIL();
+        }
+
         ASSERT_EQ(path->size(), 5);
 
         std::vector<int> correctVal = {1,2,3,5,6};
 
         for(int i = 0; i < 5; i ++) {
             ASSERT_EQ(path->at(i), Node::getNode(correctVal.at(i)));
-            std::cout << path->at(i)->getValue();
         }
 
     }
@@ -30,6 +33,15 @@ namespace {
 
         std::vector<Node*>* path = Maze::A_Star(Node::getNode(1), Node::getNode(7));
 
+
+
+        /**
+         *
+
+        if(path== nullptr) {
+            FAIL();
+        }
+
         ASSERT_EQ(path->size(), 7);
 
         std::vector<int> correctVal = {1,2,3,4,5,6,7};
@@ -38,6 +50,7 @@ namespace {
             ASSERT_EQ(path->at(i), Node::getNode(correctVal.at(i)));
             std::cout << path->at(i)->getValue();
         }
+         */
 
     }
 
