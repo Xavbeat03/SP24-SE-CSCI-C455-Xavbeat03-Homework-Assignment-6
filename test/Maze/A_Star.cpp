@@ -34,10 +34,6 @@ namespace {
         std::vector<Node*>* path = Maze::A_Star(Node::getNode(1), Node::getNode(7));
 
 
-
-        /**
-         *
-
         if(path== nullptr) {
             FAIL();
         }
@@ -48,9 +44,7 @@ namespace {
 
         for(int i = 0; i < 7; i ++) {
             ASSERT_EQ(path->at(i), Node::getNode(correctVal.at(i)));
-            std::cout << path->at(i)->getValue();
         }
-         */
 
     }
 
